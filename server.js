@@ -20,17 +20,8 @@ app.get("/styles", function(req,res){
 app.get("/index", function(req,res){
     res.sendFile(path.join(__dirname, "./public/assets/js/index.js"));
 })
-// app.get("/notes", function(req,res){
-//     fs.readFile(__dirname + "./public/notes.html", function(err,data){
-//         res.writeHead(200, {"Content-Type": "text/html"});
-//         res.end(data);
-//     });
-// })
-
-
 
 let db = require('./db/db.json');
-let data=[];
 // get data from notes.html
 app.get('/api/notes', function(req,res){
     res.json(db);
