@@ -30,7 +30,7 @@ app.get('/api/notes', function(req,res){
 app.post("/api/notes", function(req,res){
     db.push(req.body); 
     let json = JSON.stringify(db);
-    fs.writeFile("./db/db.json", json, 'utf8', function(err, data){
+    fs.writeFileSync("./db/db.json", json, 'utf8', function(err, data){
         if(err) return err;
         console.log(data);
     }); 
