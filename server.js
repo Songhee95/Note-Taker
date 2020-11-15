@@ -30,13 +30,24 @@ app.get("/index", function(req,res){
 
 
 let db = require('./db/db.json');
+let data=[];
 // get data from notes.html
 app.get('/api/notes', function(req,res){
     res.json(db);
 })
+
 app.post("/api/notes", function(req,res){
-    db.push(req.body);
+    db.push(req.body); 
+    let json = JSON.stringify(db);
+    fs.writeFile("./db/db.json", json, 'utf8', function(err, data){
+        if(err) return err;
+        console.log(data);
+    }); 
 })
+// app.delete("/api/notes/:id", function(req,res){
+//     const rev = req.params.rev;
+//     db.remove(req.params.id, rev);
+// })
 
 app.listen(PORT, function(){
     console.log("app listening on port : " + PORT);
