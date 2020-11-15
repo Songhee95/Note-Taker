@@ -2,11 +2,41 @@ const express = require('express');
 const PORT = process.env.PORT || 8080;
 const app = express();
 const path = require('path');
+const fs = require('fs');
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+//send file
+app.get("/notes", function(req,res){
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
+})
+app.get('/', function(req,res){
+    res.sendFile(path.join(__dirname,'./public/index.html'));
+})
+app.get("/styles", function(req,res){
+    res.sendFile(path.join(__dirname, "./public/assets/css/styles.css"));
+})
+app.get("/index", function(req,res){
+    res.sendFile(path.join(__dirname, "./public/assets/js/index.js"));
+})
+// app.get("/notes", function(req,res){
+//     fs.readFile(__dirname + "./public/notes.html", function(err,data){
+//         res.writeHead(200, {"Content-Type": "text/html"});
+//         res.end(data);
+//     });
+// })
 
+
+
+let content = [];
+// get data from notes.html
+app.get('/api/notes', function(req,res){
+    res.json(content);
+})
+app.post("/api/notes", function(req,res){
+    content.push(content);
+})
 
 app.listen(PORT, function(){
     console.log("app listening on port : " + PORT);
