@@ -29,13 +29,13 @@ app.get("/index", function(req,res){
 
 
 
-let content = [];
+let db = require('./db/db.json');
 // get data from notes.html
 app.get('/api/notes', function(req,res){
-    res.json(content);
+    res.json(db);
 })
 app.post("/api/notes", function(req,res){
-    content.push(content);
+    db.push(req.body);
 })
 
 app.listen(PORT, function(){
