@@ -37,6 +37,15 @@ app.post("/api/notes", function(req,res){
     data = req.body;
     db.push(data); 
 })
+app.delete("/api/notes/:id", function(req,res){
+    const del = req.params.id;
+    db.map(index => {
+        if(index.id === del){
+            db.splice(index,1);
+        }
+    })
+    res.send(db);
+})
 
 app.listen(PORT, function(){
     console.log("app listening on port : " + PORT);
