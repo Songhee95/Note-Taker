@@ -39,12 +39,13 @@ app.post("/api/notes", function(req,res){
 })
 app.delete("/api/notes/:id", function(req,res){
     const del = req.params.id;
-    db.map(index => {
-        if(index.id === del){
-            db.splice(index,1);
+    for(var i=0; i<db.length; i++){
+        if(db[i].id === del){
+            console.log(db[i]);
+            db.splice(i,1);
         }
-    })
-    res.send(db);
+    }
+    res.send("hello");
 })
 
 app.listen(PORT, function(){
