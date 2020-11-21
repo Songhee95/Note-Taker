@@ -36,7 +36,9 @@ app.post("/api/notes", function(req,res){
     req.body.id = req.body.title;
     data = req.body;
     db.push(data); 
+    res.json(db);
 })
+
 app.delete("/api/notes/:id", function(req,res){
     const del = req.params.id;
     for(var i=0; i<db.length; i++){
@@ -45,7 +47,7 @@ app.delete("/api/notes/:id", function(req,res){
             db.splice(i,1);
         }
     }
-    res.send("hello");
+    res.send();
 })
 
 app.listen(PORT, function(){
